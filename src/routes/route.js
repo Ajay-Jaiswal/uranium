@@ -2,13 +2,54 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
+
+// it is file making by me
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+
+router.post('/players', function (req, res) {
     // let a = { msg: "My first ever API response in JSON !!"} 
-
-
-    res.send( { msg: "My first ever API response in JSON !!"} )
+    const data = req.body
+    players.filter((players)=>{
+        if(players.name === data.name) {
+            return res.send( { msg : "player already exist"}  )
+        }
+    })
+    players.push(data);
+    return res.send({msg: "hi guys..my 2nd post req", newPlayer: players});
+    console.log (data);  
 });
 
+ 
+//----------------------------------------------------------------------------
 
 
 router.get('/test-api1', function (req, res) {
