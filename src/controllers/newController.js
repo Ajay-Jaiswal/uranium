@@ -64,7 +64,7 @@ const updateBook=async function(req,res){
 }
 
 const updateB= async function(req ,res){
-    let a_filter= await newAuthorSchema.find({rating:{$gt: 3.5}})
+    let a_filter= await newAuthorSchema.find({ratings:{$gt: 3.5}})
     await newBookSchema.updateMany({author:a_filter},{$inc:{price:10}})
     let data = await newBookSchema.find()
     res.send({msg:data})
