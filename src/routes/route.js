@@ -21,6 +21,7 @@ router.post("/deleteBooks", BookController.deleteBooks)
 
 //MOMENT JS
 const moment = require('moment');
+const { append } = require('express/lib/response');
 router.get("/dateManipulations", function (req, res) {
     
     // const today = moment();
@@ -37,5 +38,8 @@ router.get("/dateManipulations", function (req, res) {
 
     res.send({ msg: "all good"})
 })
+
+
+
 
 module.exports = router;

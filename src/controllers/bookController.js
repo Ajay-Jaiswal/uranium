@@ -1,5 +1,7 @@
 const { count } = require("console")
+const { query } = require("express")
 const BookModel= require("../models/bookModel")
+const { route } = require("../routes/route")
 
 const createBook= async function (req, res) {
     let data= req.body
@@ -41,6 +43,14 @@ const deleteBooks= async function (req, res) {
      
      res.send( { msg: allBooks})
 }
+
+
+
+
+
+
+
+
 
 
 
