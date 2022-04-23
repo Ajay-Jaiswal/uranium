@@ -41,6 +41,7 @@ const loginUser = async function (req, res) {
 };
 
 const getUserData = async function (req, res) {
+  try{
   let token = req.headers["x-Auth-token"];
   if (!token) token = req.headers["x-auth-token"];
 
@@ -63,7 +64,10 @@ const getUserData = async function (req, res) {
   if (!userDetails)
     return res.send({ status: false, msg: "No such user exists" });
 
-  res.send({ status: true, data: userDetails });
+  res.send({ status: true, data: userDetails });}
+  catch(error){
+    console.log(error.message)
+  }
 };
 
 const updateUser = async function (req, res) {
