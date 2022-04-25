@@ -13,6 +13,11 @@ router.get("/test-me", function (req, res) {
 
 
 router.post("/createBook", BookController.createBook  )
+router.get('/getbook',BookController.getBooksData )
+router.put('/bookupdate/:bookId', BookController.updateBooks)
+router.delete('/bookdelete/:bookId', BookController.deleteBooks)
+router.get('/getspecificbook', BookController.totalSalesPerAuthor)
+
 
 
 
