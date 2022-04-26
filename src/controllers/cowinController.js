@@ -1,4 +1,5 @@
-let axios = require("axios")
+let axios = require("axios");
+const res = require("express/lib/response");
 
 
 let getStates = async function (req, res) {
@@ -15,7 +16,7 @@ let getStates = async function (req, res) {
     }
     catch (err) {
         console.log(err)
-        res.status(500).send({ msg: err.message })
+        res.send({ msg: err.message })
     }
 }
 
@@ -38,22 +39,51 @@ let getDistricts = async function (req, res) {
     }
 }
 
-let getByPin = async function (req, res) {
+//////////////////Q 1)////////////////////////
+
+
+/*let getDistrictsbyId = async function (req, res) {
     try {
-        let pin = req.query.pincode
-        let date = req.query.date
-        console.log(`query params are: ${pin} ${date}`)
-        var options = {
+        let id = req.params.district_id
+        let options = {
             method: "get",
-            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pin}&date=${date}`
+            url: `https://cdn-api.co-vin.in/api/v2/admin/location/districts/${id}`
         }
-        let result = await axios(options)
-        console.log(result.data)
-        res.status(200).send({ msg: result.data })
+        let result = await axios(options);
+        console.log(result)
+        let data = result.data
+        res.status(200).send({ msg: data, status: true })
     }
     catch (err) {
         console.log(err)
         res.status(500).send({ msg: err.message })
+    }
+}
+*/
+
+
+
+
+
+////////////////////////////////////////////////////
+
+
+let getByPin = async function (req, res) {
+    try {
+        let pin = req.query.pincode;
+        let date = req.query.date;
+        console.log(`query params are: ${pin} ${date}`);
+        var options = {
+            method: "get",
+            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pin}&date=${date}`
+        };
+        let result = await axios(options);
+        console.log(result.data);
+        res.status(200).send({ msg: result.data });
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send({ msg: err.message });
     }
 }
 
@@ -68,14 +98,15 @@ let getOtp = async function (req, res) {
             data: blahhh
         }
 
-        let result = await axios(options)
+        let result = await axios(options)+
+
         console.log(result.data)
         res.status(200).send({ msg: result.data })
-    }
+        }
     catch (err) {
         console.log(err)
         res.status(500).send({ msg: err.message })
-    }
+        }
 }
 
 
@@ -83,3 +114,6 @@ module.exports.getStates = getStates
 module.exports.getDistricts = getDistricts
 module.exports.getByPin = getByPin
 module.exports.getOtp = getOtp
+
+
+
